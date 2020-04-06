@@ -1,0 +1,29 @@
+version: '3.7'
+
+services: 
+  webapp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: myapp-server-img
+    container_name: myapp-node-express
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    env_file: .env
+    environment: 
+      WAIT_HOSTS: mysql:3306
+  mysql:
+    image: mysql
+    volumes: 
+      - ./src/create_database.sql:/docker-entrypoint-initdb.d/0_init.sql
+    container_name: aucc-db
+    ports: 
+        - "3306:3306"
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=aucc

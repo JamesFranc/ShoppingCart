@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    # env_file: ./server/.env # TODO - uncomment this to auto-load your .env file!
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+  mysql:
+    image: mysql
+    volumes: 
+      - ./server/src/create_database.sql:/docker-entrypoint-initdb.d/0_init.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    container_name: aucc-db
+    restart: always
+    environment:
+    - MYSQL_ROOT_PASSWORD=aucc
+    expose:
+      - "3306"
+
+networks:
+    app-network:
+        driver: bridge
+
+volumes:
+    data-volume:
+    node_modules:
+    web-root:
+      driver: local
