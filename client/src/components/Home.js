@@ -19,7 +19,7 @@ class Home extends Component {
                             </div>
                             
                             <div className="card-content">
-                                <p>{item.desc}</p>
+                                <p className="truncate">{item.desc}</p>
                                 <p><b>Price: ${item.price}</b></p>
                             </div>
                         </div>

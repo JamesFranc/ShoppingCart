@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { removeItem, addQuantity, subtractQuantity} from '../actions/cartActions'
 
 class Cart extends Component {
+
+    handleRemove = (id) => {
+        this.props.removeItem(id);
+    }
+    handleAddQuantity = (id) => {
+        this.props.addQuantity(id);
+    }
+    handleSubtractQuantity = (id) => {
+        this.props.subtractQuantity(id);
+    }
 
     render() {
         let addedItems = this.props.items.length ? 
@@ -20,10 +31,10 @@ class Cart extends Component {
                         </p>
                         <div className="secondary-content">
                             <div className="add-remove">
-                                <Link to="/cart"><i className="material-icons">add_circle_outline</i></Link>
-                                <Link to="/cart"><i className="material-icons">remove_circle_outline</i></Link>
+                                <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleAddQuantity(item.id)}}>add_circle_outline</i></Link>
+                                <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleSubtractQuantity(item.id)}}>remove_circle_outline</i></Link>
                             </div>
-                            <button className="waves-effect waves-light btn pink remove">Remove</button>
+                            <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item.id)}}>Remove</button>
                         </div>
                     </li>
                 )
@@ -51,4 +62,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Cart)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        removeItem: (id) => {dispatch(removeItem(id))},
+        addQuantity: (id) => {dispatch(addQuantity(id))},
+        subtractQuantity: (id) => {dispatch(subtractQuantity(id))}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
