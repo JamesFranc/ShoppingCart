@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Recipe from '../Recipe/Recipe';
 import { removeItem, addQuantity, subtractQuantity} from '../actions/cartActions'
 
 class Cart extends Component {
@@ -24,8 +25,9 @@ class Cart extends Component {
                         <div className="circle">
                             <img src={item.ref} alt={item.title} className="responsive-img" />
                         </div>
+                        
                         <span className="title">{item.title}</span>
-                        <p><b>Price: {item.price}</b></p>
+                        <p><b>Price: ${item.price.toFixed(2)}</b></p>
                         <p>
                             <b>Quantity: {item.quantity}</b>
                         </p>
@@ -51,6 +53,7 @@ class Cart extends Component {
                         { addedItems }
                     </ul>
                 </div>
+                <Recipe />
             </div>    
         )
     }

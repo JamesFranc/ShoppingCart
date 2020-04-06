@@ -10,7 +10,7 @@ const initState = {
         { id:3,title:'little treat', desc:  "this treat is kind of small but still good", price:1.20, ref: Item3, credit:'Photo by Masimo Grabar on Unsplash'},
     ],
     addedItems: [],
-    total: 0
+    total: (0.00).toFixed(2)
 }
 
 const cartReducer = (state = initState, action) => {
@@ -24,12 +24,12 @@ const cartReducer = (state = initState, action) => {
             
             return {
                 ...state,
-                total: state.total + addedItem.price
+                total: (+state.total + +addedItem.price).toFixed(2)
             }
         } 
         else {
             addedItem.quantity = 1;
-            let newTotal = state.total + addedItem.price;
+            let newTotal = (+state.total + addedItem.price).toFixed(2);
 
             return {
                 ...state,
@@ -43,8 +43,7 @@ const cartReducer = (state = initState, action) => {
         let new_items = state.addedItems.filter(item=> action.id !== item.id)
         
         //calculating the total
-        let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity )
-        console.log(itemToRemove)
+        let newTotal = (+state.total - (itemToRemove.price * itemToRemove.quantity)).toFixed(2);
         return {
             ...state,
             addedItems: new_items,
@@ -54,7 +53,7 @@ const cartReducer = (state = initState, action) => {
     if(action.type=== ADD_QUANTITY){
         let addedItem = state.items.find(item=> item.id === action.id)
           addedItem.quantity += 1 
-          let newTotal = state.total + addedItem.price
+          let newTotal = (+state.total + addedItem.price).toFixed(2);
           return {
               ...state,
               total: newTotal
@@ -65,7 +64,7 @@ const cartReducer = (state = initState, action) => {
         //if the qt == 0 then it should be removed
         if(addedItem.quantity === 1){
             let new_items = state.addedItems.filter(item=>item.id !== action.id)
-            let newTotal = state.total - addedItem.price
+            let newTotal = (+state.total - addedItem.price).toFixed(2);
             return {
                 ...state,
                 addedItems: new_items,
@@ -74,7 +73,7 @@ const cartReducer = (state = initState, action) => {
         }
         else {
             addedItem.quantity -= 1
-            let newTotal = state.total - addedItem.price
+            let newTotal = (+state.total - addedItem.price).toFixed(2);
             return {
                 ...state,
                 total: newTotal
