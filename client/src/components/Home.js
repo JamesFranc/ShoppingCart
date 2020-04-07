@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Cart from './Cart/Cart'
-import { addToCart, removeItem, addQuantity, subtractQuantity } from './actions/cartActions';
+import { addToCart, removeItem, subtractQuantity } from './actions/cartActions';
 class Home extends Component {
-
-    // handleClick = (id) => {
-    //     this.props.addToCart(id);
-    // }
 
     render (){
         let itemList = this.props.items.map(item => {

@@ -1,7 +1,7 @@
 import Item1 from '../../assets/images/image-1.jpg'
 import Item2 from '../../assets/images/image-2.jpg'
 import Item3 from '../../assets/images/image-3.jpg'
-import { ADD_ITEM, REMOVE_ITEM, SUB_QUANTITY } from '../actions/action-types/cart-actions';
+import { ADD_ITEM, REMOVE_ITEM, SUB_QUANTITY } from '../components/actions/action-types/cart-actions';
 
 const initState = {
     items: [
