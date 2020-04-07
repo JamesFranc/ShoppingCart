@@ -1,7 +1,7 @@
 import Item1 from '../../assets/images/image-1.jpg'
 import Item2 from '../../assets/images/image-2.jpg'
 import Item3 from '../../assets/images/image-3.jpg'
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY } from '../actions/action-types/cart-actions';
+import { ADD_ITEM, REMOVE_ITEM, SUB_QUANTITY } from '../actions/action-types/cart-actions';
 
 const initState = {
     items: [
@@ -9,21 +9,23 @@ const initState = {
         { id:1,title:'big treat', desc:  "OH THIS TREAT IS BIG, AND GOOD", price:2.20, ref: Item1, credit:'Photo by Charles Deluvio on Unsplash'},
         { id:3,title:'little treat', desc:  "this treat is kind of small but still good", price:1.20, ref: Item3, credit:'Photo by Masimo Grabar on Unsplash'},
     ],
-    addedItems: [],
+    itemsInCart: [],
     total: (0.00).toFixed(2)
 }
 
 const cartReducer = (state = initState, action) => {
-    
-    // Inside Home Component
-    if (action.type === ADD_TO_CART) {
+    if (action.type === ADD_ITEM) {
         let addedItem = state.items.find(item => item.id === action.id);
-        let existedItem = state.addedItems.find(item => action.id === item.id);
-        if (existedItem) {
-            addedItem.quantity += 1;
-            
+        let itemInCart = state.itemsInCart.find(item => action.id === item.id);
+        if (itemInCart) {
+            state.itemsInCart.forEach(item => {
+                if (item.id === itemInCart.id) {
+                    item.quantity +=1;
+                }
+            })
             return {
                 ...state,
+                itemsInCart: [...state.itemsInCart],
                 total: (+state.total + +addedItem.price).toFixed(2)
             }
         } 
@@ -33,42 +35,33 @@ const cartReducer = (state = initState, action) => {
 
             return {
                 ...state,
-                addedItems: [...state.addedItems, addedItem],
-                total: newTotal
+                itemsInCart: [...state.itemsInCart, addedItem],
+                total: (+newTotal).toFixed(2)
             }
         }
     }
-    if(action.type === REMOVE_ITEM){
-        let itemToRemove= state.addedItems.find(item=> action.id === item.id)
-        let new_items = state.addedItems.filter(item=> action.id !== item.id)
+    if (action.type === REMOVE_ITEM) {
+        let itemToRemove = state.itemsInCart.find(item=> action.id === item.id)
+        let newItems = state.itemsInCart.filter(item=> action.id !== item.id)
         
         //calculating the total
         let newTotal = (+state.total - (itemToRemove.price * itemToRemove.quantity)).toFixed(2);
         return {
             ...state,
-            addedItems: new_items,
-            total: newTotal
+            itemsInCart: newItems,
+            total: (+newTotal).toFixed(2)
         }
     }
-    if(action.type=== ADD_QUANTITY){
-        let addedItem = state.items.find(item=> item.id === action.id)
-          addedItem.quantity += 1 
-          let newTotal = (+state.total + addedItem.price).toFixed(2);
-          return {
-              ...state,
-              total: newTotal
-          }
-    }
-    if(action.type=== SUB_QUANTITY){  
+    if (action.type === SUB_QUANTITY) {  
         let addedItem = state.items.find(item=> item.id === action.id) 
-        //if the qt == 0 then it should be removed
-        if(addedItem.quantity === 1){
-            let new_items = state.addedItems.filter(item=>item.id !== action.id)
+        //i f the quantity == 0 then it should be removed
+        if (addedItem.quantity === 1) {
+            let newItems = state.itemsInCart.filter(item=>item.id !== action.id)
             let newTotal = (+state.total - addedItem.price).toFixed(2);
             return {
                 ...state,
-                addedItems: new_items,
-                total: newTotal
+                itemsInCart: newItems,
+                total: (+newTotal).toFixed(2)
             }
         }
         else {
@@ -76,7 +69,7 @@ const cartReducer = (state = initState, action) => {
             let newTotal = (+state.total - addedItem.price).toFixed(2);
             return {
                 ...state,
-                total: newTotal
+                total: (+newTotal).toFixed(2)
             }
         }
     }

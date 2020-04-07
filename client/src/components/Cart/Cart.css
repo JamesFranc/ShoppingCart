@@ -1,0 +1,6 @@
+.cart > .collection {
+    min-width: 250px;
+}
+.cart > .collection > .collection-item.avatar {
+    padding-left: 20px;
+}

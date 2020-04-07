@@ -8,12 +8,12 @@ class Recipe extends Component {
         return(
             <div className="container">
                 <div className="collection">
-                        <span className="collection-item"><b>Total: ${this.props.total}</b></span>
-                    </div>
-                    <div className="checkout">
-                        <button className="waves-effect waves-light btn">Checkout</button>
-                    </div>
-                 </div>
+                    <span className="collection-item"><b>Total: ${this.props.total}</b></span>
+                </div>
+                <div className="checkout">
+                    <button className="waves-effect waves-light btn">Checkout</button>
+                </div>
+            </div>
         )
     }
 }
