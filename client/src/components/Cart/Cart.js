@@ -20,22 +20,22 @@ class Cart extends Component {
         (
             this.props.items.map(item => {
                 return(
-                    <li className="collection-item avatar" key={item.id}>
+                    <li className="collection-item avatar" key={item.item_id}>
                         <div className="circle">
-                            <img src={item.ref} alt={item.title} className="responsive-img" />
+                            <img src={item.image_ref} alt={item.credit} className="responsive-img" />
                         </div>
                         
-                        <span className="title">{item.title}</span>
+                        <span className="title">{item.name}</span>
                         <p><b>${item.price.toFixed(2)}</b></p>
                         <p>
                             <b>qty: {item.quantity}</b>
                         </p>
                         <div className="secondary-content">
                             <div className="add-remove">
-                                <Link to="/"><i className="material-icons" onClick={()=>{this.handleAddToCart(item.id)}}>add_circle_outline</i></Link>
-                                <Link to="/"><i className="material-icons" onClick={()=>{this.handleSubtractQuantity(item.id)}}>remove_circle_outline</i></Link>
+                                <Link to="/"><i className="material-icons" onClick={()=>{this.handleAddToCart(item.item_id)}}>add_circle_outline</i></Link>
+                                <Link to="/"><i className="material-icons" onClick={()=>{this.handleSubtractQuantity(item.item_id)}}>remove_circle_outline</i></Link>
                             </div>
-                            <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item.id)}}><i className="material-icons">delete</i></button>
+                            <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item.item_id)}}><i className="material-icons">delete</i></button>
                         </div>
                     </li>
                 )

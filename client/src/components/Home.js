@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Cart from './Cart/Cart'
-import { addToCart, removeItem, subtractQuantity } from './actions/cartActions';
+import { addToCart, removeItem, subtractQuantity, getItems } from './actions/cartActions';
 class Home extends Component {
-
+    componentDidMount() {
+        this.props.getItems();
+    }
     render (){
+    console.log('state: ', this.props);
         let itemList = this.props.items.map(item => {
             return(
                     <div className="col s4 m6">
-                        <div className="card hoverable" key={item.id}>
+                        <div className="card hoverable" key={item.item_id}>
                             <div className="card-image">
-                                <img className="responsive-img" src={item.ref} alt={item.credit}></img>
-                                <span className="card-title">{item.title}</span>
-                                <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{this.props.addToCart(item.id)}}><i className="material-icons">add</i></span>
+                                <img className="responsive-img" src={item.image_ref} alt={item.credit}></img>
+                                <span className="card-title">{item.name}</span>
+                                <span to="/" className="btn-floating halfway-fab waves-effect waves-light red" onClick={()=>{this.props.addToCart(item.item_id)}}><i className="material-icons">add</i></span>
                             </div>
                             
                             <div className="card-content">
-                                <p className="truncate">{item.desc}</p>
+                                <p className="truncate">{item.description}</p>
                                 <p><b>Price: ${item.price.toFixed(2)}</b></p>
                             </div>
                         </div>
                      </div>
             )
-        })
+        })        
         return(
             <div className="container">
                 <h3 className="center">Our items</h3>
@@ -45,13 +48,14 @@ class Home extends Component {
 const mapStateToProps = (state) => {
     return {
         items: state.items,
-        itemsInCart: state.itemsInCart
+        itemsInCart: state.itemsInCart,
+        state: state
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-
     return {
+        getItems: () => {dispatch(getItems())},
         addToCart: (id) => { dispatch(addToCart(id)) },
         subtractQuantity: (id) => {dispatch(subtractQuantity(id))},
         removeItem: (id) => { dispatch(removeItem(id)) }

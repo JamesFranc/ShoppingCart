@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS items (
     description VARCHAR(200) NOT NULL,
 	price DECIMAL(16,2) NOT NULL,
 	image_ref VARCHAR(200),
+	credit VARCHAR(256),
     created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     retired DATETIME DEFAULT NULL,
 	primary key(item_id, created)
@@ -31,6 +32,6 @@ CREATE TABLE IF NOT EXISTS orders (
 	primary key(user_id, item_id, created)
 );
 INSERT INTO users (name) VALUES ("Nemo");
-INSERT INTO items (name, description, image_ref, price) VALUES ("big treat", "OH THIS TREAT IS BIG, AND GOOD", "big-treat.png", 2.00);
-INSERT INTO items (name, description, image_ref, price) VALUES ("really big treat", "How do I get this faster?", "really-big-treat.png", 4.00);
-INSERT INTO items (name, description, image_ref, price) VALUES ("little treat", "this treat is kind of small but still good", "little-treat.png", 1.00);
+INSERT INTO items (name, description, image_ref, credit, price) VALUES ("big treat", "OH THIS TREAT IS BIG, AND GOOD", "image-1.jpg","Photo by Susan Yin on Unsplash", 2.00);
+INSERT INTO items (name, description, image_ref, credit, price) VALUES ("really big treat", "How do I get this faster?", "image-2.jpg","Photo by Charles Deluvio on Unsplash", 4.00);
+INSERT INTO items (name, description, image_ref, credit, price) VALUES ("little treat", "this treat is kind of small but still good", "image-3.jpg","Photo by Masimo Grabar on Unsplash", 1.00);
