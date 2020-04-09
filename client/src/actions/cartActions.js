@@ -24,7 +24,6 @@ export const getCart = () => {
         axios
             .get('/cart')
             .then(res => {
-                console.log(res);
                 dispatch({
                     type: GET_CART,
                     itemsInCart: res.data.data
@@ -73,10 +72,7 @@ export const removeItem = (id) => {
 }
 
 export const subtractQuantity = (id, newQuantity) => {
-    console.log('subtract id: ', id);
-    console.log('subtract quantity: ', newQuantity);
     // Decrementing an item in the cart
-    let status = 'active';
     if (newQuantity === 0) {
         return dispatch => {
             axios
@@ -109,8 +105,6 @@ export const subtractQuantity = (id, newQuantity) => {
 }
 
 export const addQuantity = (id, newQuantity) => {
-    console.log('add id: ', id);
-    console.log('add quantity: ', newQuantity);
     // Incrementing an item in the cart
     return dispatch => {
         axios

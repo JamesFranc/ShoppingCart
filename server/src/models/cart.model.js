@@ -23,7 +23,6 @@ Cart.getCart = function (result) {
 }
 
 Cart.addItem = function (itemId, result) {
-    console.log('adding item: ', itemId);
     databaseConnection.query("INSERT INTO orders (user_id, item_id, quantity, status) VALUES (1, ?, 1,'active')", [itemId],
         (err, res) => {
             if(err) {
@@ -37,9 +36,6 @@ Cart.addItem = function (itemId, result) {
 }
 
 Cart.updateQuantity = function (itemId, quantity, status, result) {
-    console.log('updating item: ', itemId);
-    console.log('updating quantity: ', quantity);
-    console.log('updating status: ', status);
     databaseConnection.query("UPDATE orders SET quantity = ?, status = ? WHERE item_id = ? AND status = 'active'", [quantity, status, itemId],
         (err, res) => {
             if(err) {

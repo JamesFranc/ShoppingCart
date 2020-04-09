@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  }
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["./__tests__/setup/setupTests.js"]
+   }
 }

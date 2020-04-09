@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Cart from './Cart/Cart'
-import { addToCart, removeItem, addQuantity, subtractQuantity, getCatalog, getCart } from './actions/cartActions';
+import Cart from './Cart/Cart.js'
+import { addToCart, removeItem, addQuantity, subtractQuantity, getCatalog, getCart } from '../actions/cartActions';
 class Home extends Component {
     componentDidMount() {
         this.props.getCatalog();
         this.props.getCart();
     }
     render (){
-    // console.log('state: ', this.props);
-
         let itemList = this.props.items.map(item => {
             let itemInCart = this.props.itemsInCart.find((cartItem) => {
                 return cartItem.item_id === item.item_id
