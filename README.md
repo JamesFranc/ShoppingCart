@@ -29,6 +29,27 @@ web_1    | Visit http://localhost:8080 in your browser to use the shopping cart
 
 Enjoy using the shopping cart!
 
+## Mysql admin
+If you are so inclined and want to do some database administration on a running docker instance here is what you'll need to do.
+
+Open a terminal window and enter: 
+```
+docker exec -it aucc-db bash
+```
+Once in the container run:
+```
+mysql -u root -p aucc
+```
+At the `Enter password: ` prompt use :`aucc` as the password
+
+Finally enter:
+```
+USE aucc;
+```
+You are now in the database for the application and can perform maintenance (add/remove items/users to the catalog, get schemas, etc etc...)
+
+
+
 ## Client unit testing and coverage reporting
 We test the React + Redux client using Jest and Enzyme. To run tests and check coverage for the client open a terminal window and navigate to the client directory.
 Once in the client directory enter:
