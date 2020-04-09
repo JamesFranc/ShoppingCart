@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-//import { addShipping } from './actions/cartActions'
+
 class Recipe extends Component {
 
     render(){
@@ -23,12 +23,5 @@ const mapStateToProps = (state)=> {
         total: state.total
     }
 }
-
-// const mapDispatchToProps = (dispatch)=>{
-//     return {
-//         addShipping: ()=>{dispatch({type: 'ADD_SHIPPING'})},
-//         substractShipping: ()=>{dispatch({type: 'SUB_SHIPPING'})}
-//     }
-// }
 
 export default connect(mapStateToProps)(Recipe);

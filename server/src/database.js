@@ -24,13 +24,7 @@ connection.connect(function(err) {
 
 connection.on('error', console.error.bind(console, 'MySQL Connection Error:' + connection.host));
 connection.on('success', () => {
-    // we're connected !
     console.log('MySQL Connection successful');
 });
 
 module.exports = connection;
-// JUST TO TEST THE CONNECTION
-// connection.query('SELECT * FROM items;', (err, res) => {
-//     console.log(connection.state);
-//     console.log(res);
-// });

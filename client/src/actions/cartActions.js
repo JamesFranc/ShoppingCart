@@ -19,7 +19,7 @@ export const getCatalog = () => {
 }
 
 export const getCart = () => {
-    //On successful axios call get catalog items
+    //On successful axios call get items in cart
         return dispatch => {
         axios
             .get('/cart')
@@ -36,7 +36,6 @@ export const getCart = () => {
 }
 
 export const addToCart = (id) => {
-    console.log('add to cart: ', id);
     // Adding an item not currently in the cart
     return dispatch => {
         axios
@@ -54,7 +53,6 @@ export const addToCart = (id) => {
 }
 
 export const removeItem = (id) => {
-    console.log('remove item: ', id);
     // Removing an item in the cart
     return dispatch => {
         axios
@@ -87,7 +85,8 @@ export const subtractQuantity = (id, newQuantity) => {
                     console.log(err.message)
                 })
             }
-    }else {
+    } 
+    else {
         return dispatch => {
             axios
                 .put('/cart', {id: id, quantity: newQuantity, status: 'active'})
