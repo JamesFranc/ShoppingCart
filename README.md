@@ -55,7 +55,7 @@ We test the React + Redux client using Jest and Enzyme. To run tests and check c
 Once in the client directory enter:
 
 ```
-npm run test -- --coverage --watchAll=false -u
+npm install && npm run test -- --coverage --watchAll=false -u
 ```
 
 Tests will be run and a coverage report will be generated for you.
