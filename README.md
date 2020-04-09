@@ -40,7 +40,7 @@ Once in the container run:
 ```
 mysql -u root -p aucc
 ```
-At the `Enter password: ` prompt use :`aucc` as the password
+At the `Enter password: ` prompt use: `aucc` as the password
 
 Finally enter:
 ```
