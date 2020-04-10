@@ -5,6 +5,9 @@
 This repo is a dockerized full stack example of simple shopping cart application. This project leverages MySQL for the database, Node (Express) for the api layer, and React for the UI. Each layer has its own Dockerfile so it can be worked on in a development environment independent of the other layers.
 
 ## How do you use the production application?
+- If you don't have Docker installed on your machine please get that installed first!
+  https://docs.docker.com/get-started/
+  
 - Open a terminal window
 - Navigate to a directory you want the project to reside in
 ```
