@@ -71,4 +71,4 @@ Once in the server directory enter:
 mocha
 ```
 
-Tests will be run and a coverage report will be generated for you.
+Tests will be run and their pass status will be reported.
