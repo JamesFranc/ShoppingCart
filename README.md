@@ -71,4 +71,7 @@ Once in the server directory enter:
 mocha
 ```
 
-Tests will be run and their pass status will be reported.
+Tests will be run and the results will be reported.
+
+
+This project still has room for refinement.
